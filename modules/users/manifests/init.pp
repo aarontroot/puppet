@@ -1,4 +1,8 @@
-# Manage users via hiera
+## Manage users via hiera
+## Example of hieradata file below
+## By: atree@dragonrealm.net
+
+#---
 #users:
 #  <username>:
 #    comment:    <real name>
