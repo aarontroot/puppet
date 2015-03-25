@@ -1,3 +1,4 @@
+## Users module using hiera
 ## Example of hieradata file below.  Shell and groups also need
 ## to be defined in hieradata/os/$::osfamily files
 ## By: atree@dragonrealm.net
