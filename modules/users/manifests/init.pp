@@ -1,7 +1,11 @@
 ## Users module using hiera
-## Example of hieradata file below.  Shell and groups also need
-## to be defined in hieradata/os/$::osfamily files
 ## By: atree@dragonrealm.net
+
+# hieradata/os/$::osfamily.yaml
+#---
+#  bash:       /path/to/bash
+#  csh:        /path/to/csh
+#  admingroup: [wheel|sudo|etc]
 
 # hieradata/users.yaml
 #---
