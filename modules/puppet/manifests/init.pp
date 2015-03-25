@@ -25,7 +25,7 @@ class puppet {
       changes => 'set /files/etc/default/puppet/START yes',
     }
       
-    augeas { $config: 
+    augeas { $config:
       changes => "rm /files/${config}/main/templatedir",
     }
   }
