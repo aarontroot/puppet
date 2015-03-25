@@ -1,4 +1,5 @@
 ## This file is managed by Puppet
+## modules/ssh/templates/sshd_config.erb
 
 Port 22
 AddressFamily inet
@@ -25,7 +26,7 @@ LogLevel INFO
 
 ## Authentication:
 LoginGraceTime 2m
-PermitRootLogin no
+PermitRootLogin <%= @PermitRootLogin %>
 StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
@@ -51,7 +52,7 @@ PermitEmptyPasswords no
 
 ## Change to no to disable PAM authentication
 ChallengeResponseAuthentication no
-PasswordAuthentication no
+PasswordAuthentication <%= @PasswordAuthentication %>
 
 ## Change to no to disable tunnelled clear text passwords
 #PasswordAuthentication yes

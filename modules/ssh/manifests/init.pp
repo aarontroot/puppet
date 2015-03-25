@@ -1,6 +1,8 @@
 # ssh/manifests/init.pp
 class ssh {
-  $ssh_svc = $::osfamily ? {
+  $PermitRootLogin = 'no'
+  $PasswordAuthentication = 'yes'
+  $svc = $::osfamily ? {
     Debian  => 'ssh',
     Freebsd => 'sshd',
     Default => fail("${module_name} does not support ${::osfamily}"),
