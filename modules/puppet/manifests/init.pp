@@ -1,3 +1,4 @@
+# Module to let puppet manage itself
 class puppet {
   case $::osfamily {
     'Debian': {
