@@ -23,16 +23,14 @@ class ssh {
     }
   }
 
-  augeas { '/etc/ssh/sshd_config':
-    changes => [
-      "set /files/${cfg}/PermitRootLogin ${PermitRootLogin}",
-      "set /files/${cfg}/PasswordAuthentication ${PasswordAuthentication}",
-    ],
+  file { $cfg:
+    ensure => file,
+    content => template("${module_name}/sshd_config.erb"),
   }
 
   service { $svc:
     ensure    => running,
     enable    => true,
-    subscribe => Augeas['/etc/ssh/sshd_config'],
+    subscribe => File[$cfg],
   }
 }
