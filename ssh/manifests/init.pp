@@ -2,10 +2,19 @@
 class ssh {
   $PermitRootLogin = 'no'
   $PasswordAuthentication = 'yes'
-  $svc = $::osfamily ? {
-    Debian  => 'ssh',
-    Freebsd => 'sshd',
-    Default => fail("${module_name} does not support ${::osfamily}"),
+  
+  case $::osfamily {
+    'Debian': {
+      $cfg = '/etc/ssh/sshd_config'
+      $svc = 'ssh'
+    }
+    'FreeBSD': {
+      $cfg = '/etc/ssh/sshd_config'
+      $svc = 'sshd'
+    }
+    default: {
+      fail("${module_name} does not support ${::osfamily}")
+    }
   }
 
   if $::osfamily != 'FreeBSD' {
@@ -14,14 +23,16 @@ class ssh {
     }
   }
 
-  file { '/etc/ssh/sshd_config':
-    ensure  => file,
-    content => template('ssh/sshd_config.erb'),
+  augeas { '/etc/ssh/sshd_config':
+    changes => [
+      "set /files/${cfg}/PermitRootLogin ${PermitRootLogin}",
+      "set /files/${cfg}/PasswordAuthentication ${PasswordAuthentication}",
+    ],
   }
 
   service { $svc:
     ensure    => running,
     enable    => true,
-    subscribe => File['/etc/ssh/sshd_config'],
+    subscribe => Augeas['/etc/ssh/sshd_config'],
   }
 }
