@@ -4,4 +4,5 @@ class roles::common {
   include ssh
   include sudo
   include users
+  include virtual-guest
 }
