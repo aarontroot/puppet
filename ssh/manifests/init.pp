@@ -1,7 +1,8 @@
 # ssh/manifests/init.pp
 class ssh {
-  $PermitRootLogin = 'no'
+  $PermitRootLogin        = 'no'
   $PasswordAuthentication = 'yes'
+  $PubkeyAuthentication   = 'no'
   
   case $::osfamily {
     'Debian': {
