@@ -1,4 +1,7 @@
-# Module to let puppet manage itself
+# Module to manage the puppet agent
+# Keeps Puppet Agent on latest version, enabled to start on boot
+# and removes templatedir from the config file 
+# By: atree@dragonrealm.net
 class puppet {
   case $::osfamily {
     'Debian': {

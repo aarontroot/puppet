@@ -1,4 +1,6 @@
-# Module to let puppet manage itself
+# Module to manage puppetmaster
+# Keeps puppetmaster on latest version and start on boot enabled
+# By: atree@dragonrealm.net
 class puppet::master {
   case $::osfamily {
     'Debian': {
