@@ -15,7 +15,7 @@ class virtual-guest {
     }
   }
 
-  if ($virtual in [ 'kvm', 'virtualbox', 'vmware' ]) {
+  if ($virtual in [ 'kvm', 'virtualbox', 'vmware' ] and $::osfamily != 'FreeBSD') {
     package { $pkglist:
       ensure => latest,
     }
